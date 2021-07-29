@@ -23,6 +23,10 @@
                                             <td><input name="title" type="text" class="form-control" /></td>
                                         </tr>
                                         <tr>
+                                            <th>Price</th>
+                                            <td><input name="price" type="number" class="form-control" /></td>
+                                        </tr>
+                                        <tr>
                                             <th>Detail</th>
                                             <td><textarea name="detail" class="form-control"></textarea></td>
                                         </tr>

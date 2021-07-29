@@ -24,6 +24,10 @@
                                             <td><input value="{{$data->title}}" name="title" type="text" class="form-control" /></td>
                                         </tr>
                                         <tr>
+                                            <th>Price</th>
+                                            <td><input value="{{$data->price}}" name="price" type="number" class="form-control" /></td>
+                                        </tr>
+                                        <tr>
                                             <th>Detail</th>
                                             <td><textarea name="detail" class="form-control">{{$data->detail}}</textarea></td>
                                         </tr>

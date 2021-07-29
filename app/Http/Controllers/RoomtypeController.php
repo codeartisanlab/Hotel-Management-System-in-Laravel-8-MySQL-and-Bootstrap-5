@@ -38,6 +38,7 @@ class RoomtypeController extends Controller
     {
         $data=new RoomType;
         $data->title=$request->title;
+        $data->price=$request->price;
         $data->detail=$request->detail;
         $data->save();
 
@@ -79,6 +80,7 @@ class RoomtypeController extends Controller
     {
         $data=RoomType::find($id);
         $data->title=$request->title;
+        $data->price=$request->price;
         $data->detail=$request->detail;
         $data->save();
 
