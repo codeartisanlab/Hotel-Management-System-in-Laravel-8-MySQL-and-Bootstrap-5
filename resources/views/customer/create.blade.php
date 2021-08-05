@@ -43,7 +43,7 @@
                                         </tr>
                                         <tr>
                                             <th>Photo</th>
-                                            <td><input name="photo" type="file" /></td>
+                                            <td><input name="photo[]" multiple type="file" /></td>
                                         </tr>
                                         <tr>
                                             <th>Address</th>
