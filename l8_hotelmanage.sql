@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 01, 2021 at 07:00 PM
+-- Generation Time: Aug 05, 2021 at 06:01 AM
 -- Server version: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -100,7 +100,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (6, '2021_07_22_182755_add_room_type_id_to_rooms_table', 3),
 (7, '2021_07_29_154439_create_customers_table', 4),
 (8, '2021_07_29_165100_add_price_to_room_types_table', 5),
-(9, '2021_08_01_163509_create_admins_table', 6);
+(9, '2021_08_01_163509_create_admins_table', 6),
+(10, '2021_08_05_031451_create_roomtypeimages_table', 7),
+(11, '2021_08_05_033838_create_roomtypeimages_table', 8);
 
 -- --------------------------------------------------------
 
@@ -138,6 +140,31 @@ INSERT INTO `rooms` (`id`, `title`, `created_at`, `updated_at`, `room_type_id`) 
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `roomtypeimages`
+--
+
+CREATE TABLE `roomtypeimages` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `room_type_id` int(11) NOT NULL,
+  `img_src` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `img_alt` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `roomtypeimages`
+--
+
+INSERT INTO `roomtypeimages` (`id`, `room_type_id`, `img_src`, `img_alt`, `created_at`, `updated_at`) VALUES
+(4, 14, 'public/imgs/gxtyAMVoXQzTt7pyKfSfsWVOC06HPgMu5LdkWk0a.jpg', 'Sweet Room', '2021-08-04 22:26:44', '2021-08-04 22:26:44'),
+(5, 14, 'public/imgs/M8oXi7L6XlGb4jlCt5D6HIxSghv8e27SPAkpv9rc.jpg', 'Sweet Room', '2021-08-04 22:26:44', '2021-08-04 22:26:44'),
+(6, 14, 'public/imgs/46auKYXjbKFwN9cRys3FVqFfXt5z3vHqlvaOpp6d.jpg', 'Sweet Room', '2021-08-04 22:26:44', '2021-08-04 22:26:44'),
+(7, 14, 'public/imgs/KJ802QqI04woS9GPODPleGHrizFalrfsNwXZxOZM.jpg', 'Sweet Room', '2021-08-04 22:26:44', '2021-08-04 22:26:44');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `room_types`
 --
 
@@ -156,7 +183,8 @@ CREATE TABLE `room_types` (
 
 INSERT INTO `room_types` (`id`, `title`, `detail`, `created_at`, `updated_at`, `price`) VALUES
 (1, 'Deluxe Rooms', 'Deluxe Rooms', '2021-07-28 11:37:11', '2021-07-29 11:23:57', '5000'),
-(2, 'Premium Rooms', 'Premium Rooms', '2021-07-28 11:37:20', '2021-07-29 11:24:07', '10000');
+(2, 'Premium Rooms', 'Premium Rooms', '2021-07-28 11:37:20', '2021-07-29 11:24:07', '10000'),
+(14, 'Sweet Room', 'Sweet Room', '2021-08-04 22:26:43', '2021-08-04 22:26:43', '200');
 
 -- --------------------------------------------------------
 
@@ -217,6 +245,12 @@ ALTER TABLE `rooms`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `roomtypeimages`
+--
+ALTER TABLE `roomtypeimages`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `room_types`
 --
 ALTER TABLE `room_types`
@@ -255,7 +289,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `rooms`
@@ -264,10 +298,16 @@ ALTER TABLE `rooms`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `roomtypeimages`
+--
+ALTER TABLE `roomtypeimages`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- AUTO_INCREMENT for table `room_types`
 --
 ALTER TABLE `room_types`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `users`
