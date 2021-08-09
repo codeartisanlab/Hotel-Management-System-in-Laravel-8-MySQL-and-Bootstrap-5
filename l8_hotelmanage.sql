@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 05, 2021 at 06:01 AM
+-- Generation Time: Aug 09, 2021 at 07:45 PM
 -- Server version: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -157,10 +157,7 @@ CREATE TABLE `roomtypeimages` (
 --
 
 INSERT INTO `roomtypeimages` (`id`, `room_type_id`, `img_src`, `img_alt`, `created_at`, `updated_at`) VALUES
-(4, 14, 'public/imgs/gxtyAMVoXQzTt7pyKfSfsWVOC06HPgMu5LdkWk0a.jpg', 'Sweet Room', '2021-08-04 22:26:44', '2021-08-04 22:26:44'),
-(5, 14, 'public/imgs/M8oXi7L6XlGb4jlCt5D6HIxSghv8e27SPAkpv9rc.jpg', 'Sweet Room', '2021-08-04 22:26:44', '2021-08-04 22:26:44'),
-(6, 14, 'public/imgs/46auKYXjbKFwN9cRys3FVqFfXt5z3vHqlvaOpp6d.jpg', 'Sweet Room', '2021-08-04 22:26:44', '2021-08-04 22:26:44'),
-(7, 14, 'public/imgs/KJ802QqI04woS9GPODPleGHrizFalrfsNwXZxOZM.jpg', 'Sweet Room', '2021-08-04 22:26:44', '2021-08-04 22:26:44');
+(23, 21, 'public/imgs/vD5L0IlIU4sztSucrQIEq0FmEY8yeJQsJEjurKPn.jpg', 'Sweet Room', '2021-08-09 12:08:37', '2021-08-09 12:08:37');
 
 -- --------------------------------------------------------
 
@@ -184,7 +181,7 @@ CREATE TABLE `room_types` (
 INSERT INTO `room_types` (`id`, `title`, `detail`, `created_at`, `updated_at`, `price`) VALUES
 (1, 'Deluxe Rooms', 'Deluxe Rooms', '2021-07-28 11:37:11', '2021-07-29 11:23:57', '5000'),
 (2, 'Premium Rooms', 'Premium Rooms', '2021-07-28 11:37:20', '2021-07-29 11:24:07', '10000'),
-(14, 'Sweet Room', 'Sweet Room', '2021-08-04 22:26:43', '2021-08-04 22:26:43', '200');
+(21, 'Sweet Room', 'Sweet Room', '2021-08-09 12:08:36', '2021-08-09 12:08:36', '300');
 
 -- --------------------------------------------------------
 
@@ -301,13 +298,13 @@ ALTER TABLE `rooms`
 -- AUTO_INCREMENT for table `roomtypeimages`
 --
 ALTER TABLE `roomtypeimages`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `room_types`
 --
 ALTER TABLE `room_types`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `users`

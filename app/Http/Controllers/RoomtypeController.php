@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\RoomType;
 use App\Models\Roomtypeimage;
+use Illuminate\Support\Facades\Storage;
 
 class RoomtypeController extends Controller
 {
@@ -114,5 +115,14 @@ class RoomtypeController extends Controller
     {
        RoomType::where('id',$id)->delete();
        return redirect('admin/roomtype')->with('success','Data has been deleted.');
+    }
+
+    public function destroy_image($img_id)
+    {
+        $data=Roomtypeimage::where('id',$img_id)->first();
+        Storage::delete($data->img_src);
+
+       Roomtypeimage::where('id',$img_id)->delete();
+       return response()->json(['bool'=>true]);
     }
 }
