@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 09, 2021 at 07:45 PM
+-- Generation Time: Aug 15, 2021 at 12:58 PM
 -- Server version: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -62,6 +62,28 @@ CREATE TABLE `customers` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `departments`
+--
+
+CREATE TABLE `departments` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `title` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `detail` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `departments`
+--
+
+INSERT INTO `departments` (`id`, `title`, `detail`, `created_at`, `updated_at`) VALUES
+(1, 'HouseKeeping', 'HouseKeeping Detail', '2021-08-15 04:29:31', '2021-08-15 04:29:31'),
+(2, 'Shift Managers', 'Shift Managers Detail', '2021-08-15 04:30:02', '2021-08-15 04:30:02');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `failed_jobs`
 --
 
@@ -102,7 +124,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (8, '2021_07_29_165100_add_price_to_room_types_table', 5),
 (9, '2021_08_01_163509_create_admins_table', 6),
 (10, '2021_08_05_031451_create_roomtypeimages_table', 7),
-(11, '2021_08_05_033838_create_roomtypeimages_table', 8);
+(11, '2021_08_05_033838_create_roomtypeimages_table', 8),
+(12, '2021_08_15_090054_create_departments_table', 9),
+(13, '2021_08_15_094608_create_staff_table', 10);
 
 -- --------------------------------------------------------
 
@@ -130,13 +154,6 @@ CREATE TABLE `rooms` (
   `room_type_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `rooms`
---
-
-INSERT INTO `rooms` (`id`, `title`, `created_at`, `updated_at`, `room_type_id`) VALUES
-(2, 'Room 2', '2021-07-28 11:39:37', '2021-07-28 11:39:37', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -157,7 +174,12 @@ CREATE TABLE `roomtypeimages` (
 --
 
 INSERT INTO `roomtypeimages` (`id`, `room_type_id`, `img_src`, `img_alt`, `created_at`, `updated_at`) VALUES
-(23, 21, 'public/imgs/vD5L0IlIU4sztSucrQIEq0FmEY8yeJQsJEjurKPn.jpg', 'Sweet Room', '2021-08-09 12:08:37', '2021-08-09 12:08:37');
+(23, 21, 'public/imgs/vD5L0IlIU4sztSucrQIEq0FmEY8yeJQsJEjurKPn.jpg', 'Sweet Room', '2021-08-09 12:08:37', '2021-08-09 12:08:37'),
+(24, 22, 'public/imgs/EltGa8dKLBIc9DtgKF0HCRcjfI4hTogULvRtHrcv.jpg', 'Sweet Room', '2021-08-11 12:01:16', '2021-08-11 12:01:16'),
+(25, 22, 'public/imgs/vynC8j6ZBDZzRVBlZQUowT9PtSomlds0MUjEhXfQ.jpg', 'Sweet Room', '2021-08-11 12:01:16', '2021-08-11 12:01:16'),
+(27, 22, 'public/imgs/7ubteqWm1SuqvM1dVZzGK0OOMjD7FikvM17xNXA5.jpg', 'Sweet Room', '2021-08-11 12:02:00', '2021-08-11 12:02:00'),
+(28, 1, 'public/imgs/2zWoGx17udbrUk6w8M3tMA51PP6Zsn3f16DqXNm4.jpg', 'Deluxe Rooms', '2021-08-11 12:03:32', '2021-08-11 12:03:32'),
+(29, 1, 'public/imgs/jGRDKNbIhdB53FgcPSP7SXPe7J8khujVau9PX7kV.jpg', 'Deluxe Rooms', '2021-08-11 12:03:32', '2021-08-11 12:03:32');
 
 -- --------------------------------------------------------
 
@@ -181,7 +203,32 @@ CREATE TABLE `room_types` (
 INSERT INTO `room_types` (`id`, `title`, `detail`, `created_at`, `updated_at`, `price`) VALUES
 (1, 'Deluxe Rooms', 'Deluxe Rooms', '2021-07-28 11:37:11', '2021-07-29 11:23:57', '5000'),
 (2, 'Premium Rooms', 'Premium Rooms', '2021-07-28 11:37:20', '2021-07-29 11:24:07', '10000'),
-(21, 'Sweet Room', 'Sweet Room', '2021-08-09 12:08:36', '2021-08-09 12:08:36', '300');
+(22, 'Sweet Room', 'Sweet Room', '2021-08-09 12:26:18', '2021-08-09 12:26:18', '200');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `staff`
+--
+
+CREATE TABLE `staff` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `full_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `department_id` int(11) NOT NULL,
+  `photo` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `bio` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `salary_type` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `salary_amt` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `staff`
+--
+
+INSERT INTO `staff` (`id`, `full_name`, `department_id`, `photo`, `bio`, `salary_type`, `salary_amt`, `created_at`, `updated_at`) VALUES
+(1, 'Alex Updated', 1, 'public/imgs/zIgkPJneI4uz5q4B0iKqrUByUciq4123dBTRrDev.jpg', 'This is some bio detail', 'monthly', '5000', '2021-08-15 04:34:28', '2021-08-15 04:45:56');
 
 -- --------------------------------------------------------
 
@@ -214,6 +261,12 @@ ALTER TABLE `admins`
 -- Indexes for table `customers`
 --
 ALTER TABLE `customers`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `departments`
+--
+ALTER TABLE `departments`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -254,6 +307,12 @@ ALTER TABLE `room_types`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `staff`
+--
+ALTER TABLE `staff`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -277,6 +336,12 @@ ALTER TABLE `customers`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `departments`
+--
+ALTER TABLE `departments`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -286,7 +351,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `rooms`
@@ -298,13 +363,19 @@ ALTER TABLE `rooms`
 -- AUTO_INCREMENT for table `roomtypeimages`
 --
 ALTER TABLE `roomtypeimages`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `room_types`
 --
 ALTER TABLE `room_types`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
+--
+-- AUTO_INCREMENT for table `staff`
+--
+ALTER TABLE `staff`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `users`
