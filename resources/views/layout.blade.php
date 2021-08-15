@@ -105,6 +105,36 @@
                 </div>
             </li>
 
+            <!-- Department -->
+            <li class="nav-item">
+                <a class="nav-link @if(!request()->is('admin/department*')) collapsed @endif" href="#" data-toggle="collapse" data-target="#DepartmentMaster"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-users"></i>
+                    <span>Departments</span>
+                </a>
+                <div id="DepartmentMaster" class="collapse @if(request()->is('admin/department*')) show @endif" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="{{url('admin/department/create')}}">Add New</a>
+                        <a class="collapse-item" href="{{url('admin/department')}}">View All</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Staff -->
+            <li class="nav-item">
+                <a class="nav-link @if(!request()->is('admin/staff*')) collapsed @endif" href="#" data-toggle="collapse" data-target="#StaffMaster"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-users"></i>
+                    <span>Staff</span>
+                </a>
+                <div id="StaffMaster" class="collapse @if(request()->is('admin/staff*')) show @endif" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="{{url('admin/staff/create')}}">Add New</a>
+                        <a class="collapse-item" href="{{url('admin/staff')}}">View All</a>
+                    </div>
+                </div>
+            </li>
+
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
                 <a class="nav-link" href="{{url('admin/logout')}}">
