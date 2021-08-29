@@ -118,6 +118,13 @@ class StaffController extends Controller
        return redirect('admin/staff')->with('success','Data has been deleted.');
     }
 
+    // All Payments
+    function all_payments(Request $request,$staff_id){
+        $data=StaffPayment::where('staff_id',$staff_id)->get();
+        $staff=Staff::find($staff_id);
+        return view('staffpayment.index',['staff_id'=>$staff_id,'data'=>$data,'staff'=>$staff]);
+    }
+
     // Add Payment
     function add_payment($staff_id){
         return view('staffpayment.create',['staff_id'=>$staff_id]);
@@ -133,6 +140,12 @@ class StaffController extends Controller
         $data->save();
 
         return redirect('admin/staff/payment/'.$staff_id.'/add')->with('success','Data has been added.');
+    }
+
+    public function delete_payment($id,$staff_id)
+    {
+       StaffPayment::where('id',$id)->delete();
+       return redirect('admin/staff/payments/'.$staff_id)->with('success','Data has been deleted.');
     }
 
 }
