@@ -19,8 +19,8 @@ class CreateCustomersTable extends Migration
             $table->string('email');
             $table->string('password');
             $table->string('mobile');
-            $table->string('address');
-            $table->string('photo');
+            $table->string('address')->default(null);
+            $table->string('photo')->default(null);
             $table->timestamps();
         });
     }
