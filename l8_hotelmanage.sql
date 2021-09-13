@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 15, 2021 at 12:58 PM
+-- Generation Time: Sep 13, 2021 at 08:29 PM
 -- Server version: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -44,6 +44,33 @@ INSERT INTO `admins` (`id`, `username`, `password`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `bookings`
+--
+
+CREATE TABLE `bookings` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `customer_id` int(11) NOT NULL,
+  `room_id` int(11) NOT NULL,
+  `checkin_date` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `checkout_date` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `total_adults` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `total_children` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `bookings`
+--
+
+INSERT INTO `bookings` (`id`, `customer_id`, `room_id`, `checkin_date`, `checkout_date`, `total_adults`, `total_children`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, '2021-09-13', '2021-09-15', '2', '0', '2021-09-13 12:16:12', '2021-09-13 12:16:12'),
+(2, 1, 2, '2021-09-13', '2021-09-14', '3', '0', '2021-09-13 12:19:48', '2021-09-13 12:19:48'),
+(3, 1, 3, '2021-09-14', '2021-09-16', '2', '0', '2021-09-13 12:21:21', '2021-09-13 12:21:21');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `customers`
 --
 
@@ -53,11 +80,18 @@ CREATE TABLE `customers` (
   `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `mobile` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `address` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `photo` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `address` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `photo` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `customers`
+--
+
+INSERT INTO `customers` (`id`, `full_name`, `email`, `password`, `mobile`, `address`, `photo`, `created_at`, `updated_at`) VALUES
+(1, 'John Doe', 'john@gmail.com', '7c4a8d09ca3762af61e59520943dc26494f8941b', '1234567890', NULL, NULL, '2021-09-01 13:48:32', '2021-09-01 13:48:32');
 
 -- --------------------------------------------------------
 
@@ -126,7 +160,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (10, '2021_08_05_031451_create_roomtypeimages_table', 7),
 (11, '2021_08_05_033838_create_roomtypeimages_table', 8),
 (12, '2021_08_15_090054_create_departments_table', 9),
-(13, '2021_08_15_094608_create_staff_table', 10);
+(13, '2021_08_15_094608_create_staff_table', 10),
+(14, '2021_08_19_034453_create_staff_payments_table', 11),
+(15, '2021_08_30_192906_create_bookings_table', 12);
 
 -- --------------------------------------------------------
 
@@ -153,6 +189,15 @@ CREATE TABLE `rooms` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `room_type_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `rooms`
+--
+
+INSERT INTO `rooms` (`id`, `title`, `created_at`, `updated_at`, `room_type_id`) VALUES
+(1, 'Room 1', '2021-09-02 12:02:22', '2021-09-02 12:02:22', 1),
+(2, 'Room 2', '2021-09-02 12:02:40', '2021-09-02 12:02:40', 1),
+(3, 'Room 3', '2021-09-13 12:21:02', '2021-09-13 12:21:02', 1);
 
 -- --------------------------------------------------------
 
@@ -228,7 +273,22 @@ CREATE TABLE `staff` (
 --
 
 INSERT INTO `staff` (`id`, `full_name`, `department_id`, `photo`, `bio`, `salary_type`, `salary_amt`, `created_at`, `updated_at`) VALUES
-(1, 'Alex Updated', 1, 'public/imgs/zIgkPJneI4uz5q4B0iKqrUByUciq4123dBTRrDev.jpg', 'This is some bio detail', 'monthly', '5000', '2021-08-15 04:34:28', '2021-08-15 04:45:56');
+(1, 'Alex Lee', 1, 'public/imgs/zIgkPJneI4uz5q4B0iKqrUByUciq4123dBTRrDev.jpg', 'This is some bio detail', 'monthly', '5000', '2021-08-15 04:34:28', '2021-08-29 02:02:24');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `staff_payments`
+--
+
+CREATE TABLE `staff_payments` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `staff_id` int(11) NOT NULL,
+  `amount` int(11) NOT NULL,
+  `payment_date` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -255,6 +315,12 @@ CREATE TABLE `users` (
 -- Indexes for table `admins`
 --
 ALTER TABLE `admins`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `bookings`
+--
+ALTER TABLE `bookings`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -313,6 +379,12 @@ ALTER TABLE `staff`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `staff_payments`
+--
+ALTER TABLE `staff_payments`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -330,10 +402,16 @@ ALTER TABLE `admins`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `bookings`
+--
+ALTER TABLE `bookings`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `departments`
@@ -351,13 +429,13 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `rooms`
 --
 ALTER TABLE `rooms`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `roomtypeimages`
@@ -376,6 +454,12 @@ ALTER TABLE `room_types`
 --
 ALTER TABLE `staff`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `staff_payments`
+--
+ALTER TABLE `staff_payments`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
