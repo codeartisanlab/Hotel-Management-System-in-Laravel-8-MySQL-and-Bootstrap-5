@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 13, 2021 at 08:29 PM
+-- Generation Time: Sep 15, 2021 at 07:40 PM
 -- Server version: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -196,7 +196,7 @@ CREATE TABLE `rooms` (
 
 INSERT INTO `rooms` (`id`, `title`, `created_at`, `updated_at`, `room_type_id`) VALUES
 (1, 'Room 1', '2021-09-02 12:02:22', '2021-09-02 12:02:22', 1),
-(2, 'Room 2', '2021-09-02 12:02:40', '2021-09-02 12:02:40', 1),
+(2, 'Room 2', '2021-09-02 12:02:40', '2021-09-02 12:02:40', 2),
 (3, 'Room 3', '2021-09-13 12:21:02', '2021-09-13 12:21:02', 1);
 
 -- --------------------------------------------------------
