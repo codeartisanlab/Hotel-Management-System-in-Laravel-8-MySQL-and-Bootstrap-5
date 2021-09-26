@@ -4,6 +4,7 @@
 	<meta charset="utf-8">
 	<title>Home Page</title>
 	<link href="{{asset('public/bs5/bootstrap.min.css')}}" rel="stylesheet" />
+	<script type="text/javascript" src="{{asset('public/vendor/jquery/jquery.min.js')}}"></script>
 	<script type="text/javascript" src="{{asset('public/bs5/bootstrap.bundle.min.js')}}"></script>
 </head>
 <body>
@@ -78,36 +79,36 @@
 	<div class="container my-4">
 		<h1 class="text-center border-bottom">Gallery</h1>
 		<div class="row my-4">
+			@foreach($roomTypes as $rtype)
 			<div class="col-md-3">
 				<div class="card">
+					<h5 class="card-header">{{$rtype->title}}</h5>
 					<div class="card-body">
-						<p class="card-title"><a href="#">Room Type 1 Gallery</a></p>
+						@foreach($rtype->roomtypeimgs as $index => $img)
+                        	<a href="{{asset('storage/app/'.$img->img_src)}}" data-lightbox="rgallery{{$rtype->id}}">
+                        		@if($index > 0)
+                        		<img class="img-fluid hide" src="{{asset('storage/app/'.$img->img_src)}}" />
+                        		@else
+                        		<img class="img-fluid" src="{{asset('storage/app/'.$img->img_src)}}" />
+                        		@endif
+                        	</a>
+                        </td>
+                        @endforeach
 					</div>
 				</div>
 			</div>
-			<div class="col-md-3">
-				<div class="card">
-					<div class="card-body">
-						<p class="card-title"><a href="#">Room Type 2 Gallery</a></p>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-3">
-				<div class="card">
-					<div class="card-body">
-						<p class="card-title"><a href="#">Room Type 3 Gallery</a></p>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-3">
-				<div class="card">
-					<div class="card-body">
-						<p class="card-title"><a href="#">Room Type 4 Gallery</a></p>
-					</div>
-				</div>
-			</div>
+			@endforeach
 		</div>
 	</div>
 	<!-- Gallery Section End -->
+<!-- LightBox css -->
+<link rel="stylesheet" type="text/css" href="{{asset('public/vendor')}}/lightbox2-2.11.3/dist/css/lightbox.min.css" />
+<!-- LightBox Js -->
+<script type="text/javascript" src="{{asset('public/vendor')}}/lightbox2-2.11.3/dist/js/lightbox.min.js"></script>
+<style type="text/css">
+	.hide{
+		display: none;
+	}
+</style>
 </body>
 </html>
