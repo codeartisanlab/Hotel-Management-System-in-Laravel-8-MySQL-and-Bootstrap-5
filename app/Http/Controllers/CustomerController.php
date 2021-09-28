@@ -59,6 +59,11 @@ class CustomerController extends Controller
         $data->photo=$imgPath;
         $data->save();
 
+        $ref=$request->ref;
+        if($ref=='front'){
+            return redirect('register')->with('success','Data has been saved.');
+        }
+
         return redirect('admin/customer/create')->with('success','Data has been added.');
     }
 
@@ -128,5 +133,35 @@ class CustomerController extends Controller
     {
        Customer::where('id',$id)->delete();
        return redirect('admin/customer')->with('success','Data has been deleted.');
+    }
+
+    // Login
+    function login(){
+        return view('frontlogin');
+    }
+
+    // Check Login
+    function customer_login(Request $request){
+        $email=$request->email;
+        $pwd=sha1($request->password);
+        $detail=Customer::where(['email'=>$email,'password'=>$pwd])->count();
+        if($detail>0){
+            $detail=Customer::where(['email'=>$email,'password'=>$pwd])->get();
+            session(['customerlogin'=>true,'data'=>$detail]);
+            return redirect('/');
+        }else{
+            return redirect('login')->with('error','Invalid email/password!!');
+        }
+    }
+
+    // register
+    function register(){
+        return view('register');
+    }
+
+    // Logout
+    function logout(){
+        session()->forget(['customerlogin','data']);
+        return redirect('login');
     }
 }

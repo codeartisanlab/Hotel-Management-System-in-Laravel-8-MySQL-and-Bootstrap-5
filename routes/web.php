@@ -64,3 +64,8 @@ Route::resource('admin/staff',StaffController::class);
 Route::get('admin/booking/{id}/delete',[BookingController::class,'destroy']);
 Route::get('admin/booking/available-rooms/{checkin_date}',[BookingController::class,'available_rooms']);
 Route::resource('admin/booking',BookingController::class);
+
+Route::get('login',[CustomerController::class,'login']);
+Route::post('customer/login',[CustomerController::class,'customer_login']);
+Route::get('register',[CustomerController::class,'register']);
+Route::get('logout',[CustomerController::class,'logout']);
