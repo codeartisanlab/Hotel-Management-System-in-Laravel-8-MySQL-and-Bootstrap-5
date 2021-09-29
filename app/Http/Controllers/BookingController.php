@@ -54,7 +54,11 @@ class BookingController extends Controller
         $data->total_children=$request->total_children;
         $data->save();
 
+        if($request->ref=='front'){
+            return redirect('booking')->with('success','Booking has been created.');
+        }
         return redirect('admin/booking/create')->with('success','Data has been added.');
+        
     }
 
     /**
@@ -107,5 +111,10 @@ class BookingController extends Controller
     function available_rooms(Request $request,$checkin_date){
         $arooms=DB::SELECT("SELECT * FROM rooms WHERE id NOT IN (SELECT room_id FROM bookings WHERE '$checkin_date' BETWEEN checkin_date AND checkout_date)");
         return response()->json(['data'=>$arooms]);
+    }
+
+    public function front_booking()
+    {
+        return view('front-booking');
     }
 }

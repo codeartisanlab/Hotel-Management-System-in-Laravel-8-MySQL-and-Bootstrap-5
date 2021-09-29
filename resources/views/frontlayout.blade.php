@@ -20,11 +20,12 @@
 	        <a class="nav-link" href="#">Gallery</a>
 	        @if(Session::has('customerlogin'))
 	        <a class="nav-link" href="{{url('logout')}}">Logout</a>
+	        <a class="nav-link btn btn-sm btn-danger" href="{{url('booking')}}">Booking</a>
 	        @else
 	        <a class="nav-link" href="{{url('login')}}">Login</a>
 	        <a class="nav-link" href="{{url('register')}}">Register</a>
-	        @endif
 	        <a class="nav-link btn btn-sm btn-danger" href="#">Booking</a>
+	        @endif
 	      </div>
 	    </div>
 	  </div>

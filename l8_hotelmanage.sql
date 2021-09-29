@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 15, 2021 at 07:40 PM
+-- Generation Time: Sep 29, 2021 at 08:31 PM
 -- Server version: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -66,7 +66,8 @@ CREATE TABLE `bookings` (
 INSERT INTO `bookings` (`id`, `customer_id`, `room_id`, `checkin_date`, `checkout_date`, `total_adults`, `total_children`, `created_at`, `updated_at`) VALUES
 (1, 1, 1, '2021-09-13', '2021-09-15', '2', '0', '2021-09-13 12:16:12', '2021-09-13 12:16:12'),
 (2, 1, 2, '2021-09-13', '2021-09-14', '3', '0', '2021-09-13 12:19:48', '2021-09-13 12:19:48'),
-(3, 1, 3, '2021-09-14', '2021-09-16', '2', '0', '2021-09-13 12:21:21', '2021-09-13 12:21:21');
+(3, 1, 3, '2021-09-14', '2021-09-16', '2', '0', '2021-09-13 12:21:21', '2021-09-13 12:21:21'),
+(4, 4, 3, '2021-09-29', '2021-09-30', '2', '2', '2021-09-29 12:56:51', '2021-09-29 12:56:51');
 
 -- --------------------------------------------------------
 
@@ -91,7 +92,8 @@ CREATE TABLE `customers` (
 --
 
 INSERT INTO `customers` (`id`, `full_name`, `email`, `password`, `mobile`, `address`, `photo`, `created_at`, `updated_at`) VALUES
-(1, 'John Doe', 'john@gmail.com', '7c4a8d09ca3762af61e59520943dc26494f8941b', '1234567890', NULL, NULL, '2021-09-01 13:48:32', '2021-09-01 13:48:32');
+(1, 'John Doe', 'john@gmail.com', '7c4a8d09ca3762af61e59520943dc26494f8941b', '1234567890', NULL, NULL, '2021-09-01 13:48:32', '2021-09-01 13:48:32'),
+(4, 'Alex Lee', 'alex@gmail.com', 'd54b76b2bad9d9946011ebc62a1d272f4122c7b5', '789456123', 'test', NULL, '2021-09-28 13:43:42', '2021-09-28 13:43:42');
 
 -- --------------------------------------------------------
 
@@ -405,13 +407,13 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `bookings`
 --
 ALTER TABLE `bookings`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `departments`
