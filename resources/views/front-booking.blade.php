@@ -65,7 +65,7 @@
                 success:function(res){
                     var _html='';
                     $.each(res.data,function(index,row){
-                        _html+='<option value="'+row.id+'">'+row.title+'</option>';
+                        _html+='<option value="'+row.room.id+'">'+row.room.title+'-'+row.roomtype.title+'</option>';
                     });
                     $(".room-list").html(_html);
                 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Customer;
+use App\Models\RoomType;
 use App\Models\Booking;
 class BookingController extends Controller
 {
@@ -110,7 +111,14 @@ class BookingController extends Controller
     // Check Avaiable rooms
     function available_rooms(Request $request,$checkin_date){
         $arooms=DB::SELECT("SELECT * FROM rooms WHERE id NOT IN (SELECT room_id FROM bookings WHERE '$checkin_date' BETWEEN checkin_date AND checkout_date)");
-        return response()->json(['data'=>$arooms]);
+
+        $data=[];
+        foreach($arooms as $room){
+            $roomTypes=RoomType::find($room->room_type_id);
+            $data[]=['room'=>$room,'roomtype'=>$roomTypes];
+        }
+
+        return response()->json(['data'=>$data]);
     }
 
     public function front_booking()
