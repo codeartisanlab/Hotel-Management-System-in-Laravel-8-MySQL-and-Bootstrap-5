@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Models\Customer;
 use App\Models\RoomType;
 use App\Models\Booking;
+
+// use Stripe\Stripe;
+
 class BookingController extends Controller
 {
     /**
@@ -38,28 +41,47 @@ class BookingController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'customer_id'=>'required',
-            'room_id'=>'required',
-            'checkin_date'=>'required',
-            'checkout_date'=>'required',
-            'total_adults'=>'required',
-        ]);
+        // $request->validate([
+        //     'customer_id'=>'required',
+        //     'room_id'=>'required',
+        //     'checkin_date'=>'required',
+        //     'checkout_date'=>'required',
+        //     'total_adults'=>'required',
+        // ]);
         
-        $data=new Booking;
-        $data->customer_id=$request->customer_id;
-        $data->room_id=$request->room_id;
-        $data->checkin_date=$request->checkin_date;
-        $data->checkout_date=$request->checkout_date;
-        $data->total_adults=$request->total_adults;
-        $data->total_children=$request->total_children;
-        $data->save();
+        // $data=new Booking;
+        // $data->customer_id=$request->customer_id;
+        // $data->room_id=$request->room_id;
+        // $data->checkin_date=$request->checkin_date;
+        // $data->checkout_date=$request->checkout_date;
+        // $data->total_adults=$request->total_adults;
+        // $data->total_children=$request->total_children;
+        // $data->save();
 
-        if($request->ref=='front'){
-            return redirect('booking')->with('success','Booking has been created.');
-        }
-        return redirect('admin/booking/create')->with('success','Data has been added.');
-        
+        // if($request->ref=='front'){
+        //     return redirect('booking')->with('success','Booking has been created.');
+        // }
+        // return redirect('admin/booking/create')->with('success','Data has been added.');
+
+        \Stripe\Stripe::setApiKey('sk_test_51JKcB7SFjUWoS3CIIaPlxPSREpJYoyPsn5KIhj2CBCM9z23dRUreOUwFq6eXmRYmgXNfxSozplocikiAFe3aX7sK008OH0sqy6');
+        $session = \Stripe\Checkout\Session::create([
+            'payment_method_types' => ['card'],
+            'line_items' => [[
+              'price_data' => [
+                'currency' => 'inr',
+                'product_data' => [
+                  'name' => 'T-shirt',
+                ],
+                'unit_amount' => 2000,
+              ],
+              'quantity' => 1,
+            ]],
+            'mode' => 'payment',
+            'success_url' => 'http://localhost/laravel-apps/hotelManage/booking/success?session_id={CHECKOUT_SESSION_ID}',
+            'cancel_url' => 'http://localhost/laravel-apps/hotelManage/booking/fail',
+        ]);
+
+        return redirect($session->url);
     }
 
     /**
@@ -124,5 +146,18 @@ class BookingController extends Controller
     public function front_booking()
     {
         return view('front-booking');
+    }
+
+    function booking_payment_success(Request $request){
+        \Stripe\Stripe::setApiKey('sk_test_51JKcB7SFjUWoS3CIIaPlxPSREpJYoyPsn5KIhj2CBCM9z23dRUreOUwFq6eXmRYmgXNfxSozplocikiAFe3aX7sK008OH0sqy6');
+        $session = \Stripe\Checkout\Session::retrieve($request->get('session_id'));
+        $customer = \Stripe\Customer::retrieve($session->customer);
+        if($session->payment_status=='paid'){
+            echo 'success';
+        }
+    }
+
+    function booking_payment_fail(Request $request){
+        echo 'Fail';
     }
 }
