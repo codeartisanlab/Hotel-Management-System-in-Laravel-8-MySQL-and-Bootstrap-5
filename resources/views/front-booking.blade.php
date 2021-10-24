@@ -29,6 +29,7 @@
                         <select class="form-control room-list" name="room_id">
 
                         </select>
+                        <p>Price: <span class="show-room-price"></span></p>
                     </td>
                 </tr>
                 <tr>
@@ -42,6 +43,7 @@
                 <tr>
                     <td colspan="2">
                     	<input type="hidden" name="customer_id" value="{{session('data')[0]->id}}" />
+                        <input type="hidden" name="roomprice" class="room-price" value="" />
                     	<input type="hidden" name="ref" value="front" />
                         <input type="submit" class="btn btn-primary" />
                     </td> 
@@ -65,12 +67,24 @@
                 success:function(res){
                     var _html='';
                     $.each(res.data,function(index,row){
-                        _html+='<option value="'+row.room.id+'">'+row.room.title+'-'+row.roomtype.title+'</option>';
+                        _html+='<option data-price="'+row.roomtype.price+'" value="'+row.room.id+'">'+row.room.title+'-'+row.roomtype.title+'</option>';
                     });
                     $(".room-list").html(_html);
+
+                    var _selectedPrice=$(".room-list").find('option:selected').attr('data-price');
+                    $(".room-price").val(_selectedPrice);
+                    $(".show-room-price").text(_selectedPrice);
+
                 }
             });
         });
+
+        $(document).on("change",".room-list",function(){
+            var _selectedPrice=$(this).find('option:selected').attr('data-price');
+            $(".room-price").val(_selectedPrice);
+            $(".show-room-price").text(_selectedPrice);
+        });
+
     });
 </script>
 
