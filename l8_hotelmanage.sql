@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.1
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 29, 2021 at 08:31 PM
--- Server version: 10.1.33-MariaDB
--- PHP Version: 7.2.6
+-- Generation Time: Oct 25, 2021 at 07:30 PM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 8.0.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -64,10 +63,8 @@ CREATE TABLE `bookings` (
 --
 
 INSERT INTO `bookings` (`id`, `customer_id`, `room_id`, `checkin_date`, `checkout_date`, `total_adults`, `total_children`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, '2021-09-13', '2021-09-15', '2', '0', '2021-09-13 12:16:12', '2021-09-13 12:16:12'),
-(2, 1, 2, '2021-09-13', '2021-09-14', '3', '0', '2021-09-13 12:19:48', '2021-09-13 12:19:48'),
-(3, 1, 3, '2021-09-14', '2021-09-16', '2', '0', '2021-09-13 12:21:21', '2021-09-13 12:21:21'),
-(4, 4, 3, '2021-09-29', '2021-09-30', '2', '2', '2021-09-29 12:56:51', '2021-09-29 12:56:51');
+(1, 1, 3, '2021-10-25', '2021-10-23', '2', '0', '2021-10-25 11:51:09', '2021-10-25 11:51:09'),
+(2, 4, 3, '2021-10-25', '2021-10-27', '2', '1', '2021-10-25 11:57:00', '2021-10-25 11:57:00');
 
 -- --------------------------------------------------------
 
@@ -130,7 +127,7 @@ CREATE TABLE `failed_jobs` (
   `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -407,7 +404,7 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `bookings`
 --
 ALTER TABLE `bookings`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `customers`
