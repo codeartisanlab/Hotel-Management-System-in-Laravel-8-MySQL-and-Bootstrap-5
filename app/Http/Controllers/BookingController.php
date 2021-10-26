@@ -58,6 +58,11 @@ class BookingController extends Controller
         $data->checkout_date=$request->checkout_date;
         $data->total_adults=$request->total_adults;
         $data->total_children=$request->total_children;
+        if($request->ref=='front'){
+            $data->ref='front';
+        }else{
+            $data->ref='admin';
+        }
         $data->save();
 
         if($request->ref=='front'){
@@ -125,7 +130,8 @@ class BookingController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Booking::where('id',$id)->delete();
+        return redirect('admin/booking')->with('success','Data has been deleted.');
     }
 
 

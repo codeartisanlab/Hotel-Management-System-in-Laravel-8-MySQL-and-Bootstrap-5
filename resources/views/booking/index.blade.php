@@ -24,6 +24,8 @@
                                             <th>Room Type</th>
                                             <th>CheckIn Date</th>
                                             <th>CheckOut Date</th>
+                                            <th>Ref</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -34,6 +36,8 @@
                                             <th>Room Type</th>
                                             <th>CheckIn Date</th>
                                             <th>CheckOut Date</th>
+                                            <th>Ref</th>
+                                            <th>Action</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
@@ -45,6 +49,8 @@
                                             <td>{{$booking->room->Roomtype->title}}</td>
                                             <td>{{$booking->checkin_date}}</td>
                                             <td>{{$booking->checkout_date}}</td>
+                                            <td>{{$booking->ref}}</td>
+                                            <td><a href="{{url('admin/booking/'.$booking->id.'/delete')}}" class="text-danger" onclick="return confirm('Are you sure you want to delete this data?')"><i class="fa fa-trash"></i></a></td>
                                         </tr>
                                         @endforeach
                                     </tbody>
