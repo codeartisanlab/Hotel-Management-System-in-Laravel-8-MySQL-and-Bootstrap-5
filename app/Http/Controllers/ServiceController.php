@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Service;
 
 class ServiceController extends Controller
 {
@@ -13,7 +14,8 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        echo 'Index Page';
+        $data=Service::all();
+        return view('service.index',['data'=>$data]);
     }
 
     /**
@@ -23,7 +25,7 @@ class ServiceController extends Controller
      */
     public function create()
     {
-        //
+        return view('service.create');
     }
 
     /**
@@ -34,7 +36,27 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title'=>'required',
+            'small_desc'=>'required',
+            'detail_desc'=>'required',
+            'photo'=>'required',
+        ]);
+
+        if($request->hasFile('photo')){
+            $imgPath=$request->file('photo')->store('public/imgs');
+        }else{
+            $imgPath=null;
+        }
+        
+        $data=new Service;
+        $data->title=$request->title;
+        $data->small_desc=$request->small_desc;
+        $data->detail_desc=$request->detail_desc;
+        $data->photo=$imgPath;
+        $data->save();
+
+        return redirect('admin/service/create')->with('success','Data has been added.');
     }
 
     /**

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 29, 2021 at 05:40 AM
+-- Generation Time: Oct 29, 2021 at 07:12 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -266,6 +266,13 @@ CREATE TABLE `services` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `services`
+--
+
+INSERT INTO `services` (`id`, `title`, `small_desc`, `detail_desc`, `photo`, `created_at`, `updated_at`) VALUES
+(1, 'Title', 'Small Description', 'Detail Description', 'public/imgs/drRzJYzYSnL00FRVRmOLedGB12AW5F8xHAqixwiz.jpg', '2021-10-29 11:40:04', '2021-10-29 11:40:04');
+
 -- --------------------------------------------------------
 
 --
@@ -475,7 +482,7 @@ ALTER TABLE `room_types`
 -- AUTO_INCREMENT for table `services`
 --
 ALTER TABLE `services`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `staff`
