@@ -67,7 +67,8 @@ class ServiceController extends Controller
      */
     public function show($id)
     {
-        //
+        $data=Service::find($id);
+        return view('service.show',['data'=>$data]);
     }
 
     /**
@@ -78,7 +79,8 @@ class ServiceController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data=Service::find($id);
+        return view('service.edit',['data'=>$data]);
     }
 
     /**
@@ -90,7 +92,26 @@ class ServiceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'title'=>'required',
+            'small_desc'=>'required',
+            'detail_desc'=>'required'
+        ]);
+
+        if($request->hasFile('photo')){
+            $imgPath=$request->file('photo')->store('public/imgs');
+        }else{
+            $imgPath=null;
+        }
+        
+        $data=Service::find($id);
+        $data->title=$request->title;
+        $data->small_desc=$request->small_desc;
+        $data->detail_desc=$request->detail_desc;
+        $data->photo=$imgPath;
+        $data->save();
+
+        return redirect('admin/service/'.$id.'/edit')->with('success','Data has been updated.');
     }
 
     /**
@@ -101,6 +122,7 @@ class ServiceController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Service::where('id',$id)->delete();
+        return redirect('admin/service')->with('success','Data has been deleted.');
     }
 }
