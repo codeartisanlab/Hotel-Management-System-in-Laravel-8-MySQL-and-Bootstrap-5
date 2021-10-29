@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 25, 2021 at 07:30 PM
+-- Generation Time: Oct 29, 2021 at 05:40 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -54,6 +54,7 @@ CREATE TABLE `bookings` (
   `checkout_date` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `total_adults` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `total_children` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ref` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -62,9 +63,8 @@ CREATE TABLE `bookings` (
 -- Dumping data for table `bookings`
 --
 
-INSERT INTO `bookings` (`id`, `customer_id`, `room_id`, `checkin_date`, `checkout_date`, `total_adults`, `total_children`, `created_at`, `updated_at`) VALUES
-(1, 1, 3, '2021-10-25', '2021-10-23', '2', '0', '2021-10-25 11:51:09', '2021-10-25 11:51:09'),
-(2, 4, 3, '2021-10-25', '2021-10-27', '2', '1', '2021-10-25 11:57:00', '2021-10-25 11:57:00');
+INSERT INTO `bookings` (`id`, `customer_id`, `room_id`, `checkin_date`, `checkout_date`, `total_adults`, `total_children`, `ref`, `created_at`, `updated_at`) VALUES
+(1, 4, 1, '2021-10-29', '2021-10-30', '2', '0', 'admin', '2021-10-28 13:02:01', '2021-10-28 13:02:01');
 
 -- --------------------------------------------------------
 
@@ -161,7 +161,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (12, '2021_08_15_090054_create_departments_table', 9),
 (13, '2021_08_15_094608_create_staff_table', 10),
 (14, '2021_08_19_034453_create_staff_payments_table', 11),
-(15, '2021_08_30_192906_create_bookings_table', 12);
+(15, '2021_08_30_192906_create_bookings_table', 12),
+(16, '2021_10_29_033215_create_services_table', 13);
 
 -- --------------------------------------------------------
 
@@ -248,6 +249,22 @@ INSERT INTO `room_types` (`id`, `title`, `detail`, `created_at`, `updated_at`, `
 (1, 'Deluxe Rooms', 'Deluxe Rooms', '2021-07-28 11:37:11', '2021-07-29 11:23:57', '5000'),
 (2, 'Premium Rooms', 'Premium Rooms', '2021-07-28 11:37:20', '2021-07-29 11:24:07', '10000'),
 (22, 'Sweet Room', 'Sweet Room', '2021-08-09 12:26:18', '2021-08-09 12:26:18', '200');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `services`
+--
+
+CREATE TABLE `services` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `title` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `small_desc` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `detail_desc` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `photo` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -372,6 +389,12 @@ ALTER TABLE `room_types`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `services`
+--
+ALTER TABLE `services`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `staff`
 --
 ALTER TABLE `staff`
@@ -404,7 +427,7 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `bookings`
 --
 ALTER TABLE `bookings`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `customers`
@@ -428,7 +451,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `rooms`
@@ -447,6 +470,12 @@ ALTER TABLE `roomtypeimages`
 --
 ALTER TABLE `room_types`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
+--
+-- AUTO_INCREMENT for table `services`
+--
+ALTER TABLE `services`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `staff`

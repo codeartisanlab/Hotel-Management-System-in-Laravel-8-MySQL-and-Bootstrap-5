@@ -8,6 +8,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\StaffDepartment;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\ServiceController;
 
 use App\Http\Controllers\HomeController;
 /*
@@ -73,3 +74,7 @@ Route::get('logout',[CustomerController::class,'logout']);
 Route::get('booking',[BookingController::class,'front_booking']);
 Route::get('booking/success',[BookingController::class,'booking_payment_success']);
 Route::get('booking/fail',[BookingController::class,'booking_payment_fail']);
+
+// Service CRUD
+Route::get('admin/service/{id}/delete',[ServiceController::class,'destroy']);
+Route::resource('admin/service',ServiceController::class);
