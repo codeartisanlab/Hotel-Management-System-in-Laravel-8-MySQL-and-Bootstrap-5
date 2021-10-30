@@ -23,6 +23,7 @@ use App\Http\Controllers\HomeController;
 */
 
 Route::get('/',[HomeController::class,'home']);
+Route::get('/service/{id}',[HomeController::class,'service_detail']);
 
 // Admin Login
 Route::get('admin/login',[AdminController::class,'login']);

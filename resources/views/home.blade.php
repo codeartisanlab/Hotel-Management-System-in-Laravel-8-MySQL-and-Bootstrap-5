@@ -26,30 +26,20 @@
 	<!-- Service Section Start -->
 	<div class="container my-4">
 		<h1 class="text-center border-bottom">Services</h1>
+		@foreach($services as $service)
 		<div class="row my-4">
-			<div class="col-md-4">
-				<img src="{{asset('public/img/ak.jpg')}}" class="img-thumbnail" alt="...">
+			<div class="col-md-3">
+				<a href="{{url('service/'.$service->id)}}"><img class="img-thumbnail" style="width:100%;" src="{{asset('storage/app/'.$service->photo)}}" /></a>
 			</div>
 			<div class="col-md-8">
-				<h3>Service Heading</h3>
-				<p>Reference site about Lorem Ipsum, giving information on its origins, as well as a random Lipsum generator.Reference site about Lorem Ipsum, giving information on its origins, as well as a random Lipsum generator.Reference site about Lorem Ipsum, giving information on its origins, as well as a random Lipsum generator.</p>
+				<h3>{{$service->title}}</h3>
+				<p>{{$service->small_desc}}</p>
 				<p>
-					<a href="#" class="btn btn-primary">Read More</a>
+					<a href="{{url('service/'.$service->id)}}" class="btn btn-primary">Read More</a>
 				</p>
 			</div>
 		</div>
-		<div class="row my-4">
-			<div class="col-md-4">
-				<img src="{{asset('public/img/pc.jpg')}}" class="img-thumbnail" alt="...">
-			</div>
-			<div class="col-md-8">
-				<h3>Service Heading</h3>
-				<p>Reference site about Lorem Ipsum, giving information on its origins, as well as a random Lipsum generator.Reference site about Lorem Ipsum, giving information on its origins, as well as a random Lipsum generator.Reference site about Lorem Ipsum, giving information on its origins, as well as a random Lipsum generator.</p>
-				<p>
-					<a href="#" class="btn btn-primary">Read More</a>
-				</p>
-			</div>
-		</div>
+		@endforeach
 	</div>
 	<!-- Service Section End -->
 	<!-- Gallery Section Start -->
