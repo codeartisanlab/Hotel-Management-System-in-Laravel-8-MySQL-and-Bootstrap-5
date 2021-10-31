@@ -13,7 +13,8 @@ class HomeController extends Controller
     function home(){
         $services=Service::all();
         $roomTypes=RoomType::all();
-        return View('home',['roomTypes'=>$roomTypes,'services'=>$services]);
+        $testimonials=Testimonial::all();
+        return View('home',['roomTypes'=>$roomTypes,'services'=>$services,'testimonials'=>$testimonials]);
     }
 
     // Service Detail Page
