@@ -42,7 +42,9 @@
                 </tr>
                 <tr>
                     <td colspan="2">
+                        @if(Session::has('data'))
                     	<input type="hidden" name="customer_id" value="{{session('data')[0]->id}}" />
+                        @endif
                         <input type="hidden" name="roomprice" class="room-price" value="" />
                     	<input type="hidden" name="ref" value="front" />
                         <input type="submit" class="btn btn-primary" />

@@ -79,3 +79,7 @@ Route::get('booking/fail',[BookingController::class,'booking_payment_fail']);
 // Service CRUD
 Route::get('admin/service/{id}/delete',[ServiceController::class,'destroy']);
 Route::resource('admin/service',ServiceController::class);
+
+// Testimonial
+Route::get('customer/add-testimonial',[HomeController::class,'add_testimonial']);
+Route::post('customer/save-testimonial',[HomeController::class,'save_testimonial']);
