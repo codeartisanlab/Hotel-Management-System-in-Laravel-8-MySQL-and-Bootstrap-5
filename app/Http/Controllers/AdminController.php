@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Admin;
 use App\Models\Booking;
+use App\Models\Testimonial;
 use Cookie;
 
 class AdminController extends Controller
@@ -70,4 +71,17 @@ class AdminController extends Controller
 
         return view('dashboard',['labels'=>$labels,'data'=>$data,'plabels'=>$plabels,'pdata'=>$pdata]);
     }
+
+    public function testimonials()
+    {
+        $data=Testimonial::all();
+        return view('admin_testimonials',['data'=>$data]);
+    }
+
+    public function destroy_testimonial($id)
+    {
+       Testimonial::where('id',$id)->delete();
+       return redirect('admin/testimonials')->with('success','Data has been deleted.');
+    }
+
 }

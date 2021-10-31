@@ -147,6 +147,12 @@
                     <span>Services</span></a>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link" href="{{url('admin/testimonials')}}">
+                    <i class="fas fa-hotel"></i>
+                    <span>Customer Testimonials</span></a>
+            </li>
+
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
                 <a class="nav-link" href="{{url('admin/logout')}}">
