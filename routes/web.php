@@ -9,6 +9,7 @@ use App\Http\Controllers\StaffDepartment;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\PageController;
 
 use App\Http\Controllers\HomeController;
 /*
@@ -24,6 +25,8 @@ use App\Http\Controllers\HomeController;
 
 Route::get('/',[HomeController::class,'home']);
 Route::get('/service/{id}',[HomeController::class,'service_detail']);
+Route::get('page/about-us',[PageController::class,'about_us']);
+Route::get('page/contact-us',[PageController::class,'contact_us']);
 
 // Admin Login
 Route::get('admin/login',[AdminController::class,'login']);

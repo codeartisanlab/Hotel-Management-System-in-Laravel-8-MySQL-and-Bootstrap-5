@@ -18,6 +18,8 @@
 	      <div class="navbar-nav ms-auto">
 	        <a class="nav-link" aria-current="page" href="#services">Services</a>
 	        <a class="nav-link" href="#gallery">Gallery</a>
+	        <a class="nav-link" href="{{url('page/about-us')}}">About Us</a>
+	        <a class="nav-link" href="{{url('page/contact-us')}}">Contact Us</a>
 	        @if(Session::has('customerlogin'))
 	        <a class="nav-link" href="{{url('customer/add-testimonial')}}">Add Testimonial</a>
 	        <a class="nav-link" href="{{url('logout')}}">Logout</a>
