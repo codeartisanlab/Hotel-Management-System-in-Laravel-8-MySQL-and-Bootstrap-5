@@ -88,3 +88,4 @@ Route::get('customer/add-testimonial',[HomeController::class,'add_testimonial'])
 Route::post('customer/save-testimonial',[HomeController::class,'save_testimonial']);
 Route::get('admin/testimonial/{id}/delete',[AdminController::class,'destroy_testimonial']);
 Route::get('admin/testimonials',[AdminController::class,'testimonials']);
+Route::post('save-contactus',[PageController::class,'save_contactus']);

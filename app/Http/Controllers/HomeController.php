@@ -7,8 +7,10 @@ use App\Models\RoomType;
 use App\Models\Roomtypeimage;
 use App\Models\Service;
 use App\Models\Testimonial;
+
 class HomeController extends Controller
 {
+
     // Home Page
     function home(){
         $services=Service::all();
