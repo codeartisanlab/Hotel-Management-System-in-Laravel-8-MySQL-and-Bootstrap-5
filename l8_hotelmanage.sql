@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 29, 2021 at 07:12 PM
+-- Generation Time: Nov 12, 2021 at 07:29 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -39,6 +39,29 @@ CREATE TABLE `admins` (
 
 INSERT INTO `admins` (`id`, `username`, `password`) VALUES
 (1, 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `banners`
+--
+
+CREATE TABLE `banners` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `banner_src` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `alt_text` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `publish_status` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `banners`
+--
+
+INSERT INTO `banners` (`id`, `banner_src`, `alt_text`, `publish_status`, `created_at`, `updated_at`) VALUES
+(2, 'public/imgs/TenxRtEgFN48VqXnqqlNFDccossnPYxZxBrcacnj.jpg', '1', '', '2021-11-12 12:51:28', '2021-11-12 12:56:01'),
+(3, 'public/imgs/J4tloCDjFtK3OuxyrCZ6ac7X5uCZcSZ6NgLMTZYs.jpg', '2', 'on', '2021-11-12 12:51:39', '2021-11-12 12:51:39');
 
 -- --------------------------------------------------------
 
@@ -162,7 +185,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (13, '2021_08_15_094608_create_staff_table', 10),
 (14, '2021_08_19_034453_create_staff_payments_table', 11),
 (15, '2021_08_30_192906_create_bookings_table', 12),
-(16, '2021_10_29_033215_create_services_table', 13);
+(16, '2021_10_29_033215_create_services_table', 13),
+(17, '2021_10_31_083320_create_testimonials_table', 14),
+(18, '2021_11_12_180726_create_banners_table', 15);
 
 -- --------------------------------------------------------
 
@@ -271,7 +296,8 @@ CREATE TABLE `services` (
 --
 
 INSERT INTO `services` (`id`, `title`, `small_desc`, `detail_desc`, `photo`, `created_at`, `updated_at`) VALUES
-(1, 'Title', 'Small Description', 'Detail Description', 'public/imgs/drRzJYzYSnL00FRVRmOLedGB12AW5F8xHAqixwiz.jpg', '2021-10-29 11:40:04', '2021-10-29 11:40:04');
+(2, 'Service 1', 'Small Description', 'Detail Description', 'public/imgs/AueyWwvm2extl7K05UKI7s8HlDJywQTiKsSvhIfK.jpg', '2021-10-29 12:08:45', '2021-10-29 12:08:45'),
+(3, 'Service 2', 'THis is small desc', 'This is detail desc', 'public/imgs/2o4vmX6pNvBuY7W5BzNm7bdmXR6dVkTXTUYzUki3.jpg', '2021-10-30 13:21:37', '2021-10-30 13:21:37');
 
 -- --------------------------------------------------------
 
@@ -316,6 +342,27 @@ CREATE TABLE `staff_payments` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `testimonials`
+--
+
+CREATE TABLE `testimonials` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `customer_id` int(11) NOT NULL,
+  `testi_cont` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `testimonials`
+--
+
+INSERT INTO `testimonials` (`id`, `customer_id`, `testi_cont`, `created_at`, `updated_at`) VALUES
+(1, 4, 'adfasdfsdfsdfsdf', '2021-10-31 03:09:57', '2021-10-31 03:09:57');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -338,6 +385,12 @@ CREATE TABLE `users` (
 -- Indexes for table `admins`
 --
 ALTER TABLE `admins`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `banners`
+--
+ALTER TABLE `banners`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -414,6 +467,12 @@ ALTER TABLE `staff_payments`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `testimonials`
+--
+ALTER TABLE `testimonials`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -429,6 +488,12 @@ ALTER TABLE `users`
 --
 ALTER TABLE `admins`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `banners`
+--
+ALTER TABLE `banners`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `bookings`
@@ -458,7 +523,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `rooms`
@@ -482,7 +547,7 @@ ALTER TABLE `room_types`
 -- AUTO_INCREMENT for table `services`
 --
 ALTER TABLE `services`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `staff`
@@ -495,6 +560,12 @@ ALTER TABLE `staff`
 --
 ALTER TABLE `staff_payments`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `testimonials`
+--
+ALTER TABLE `testimonials`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`

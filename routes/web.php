@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BannerController;
 use App\Http\Controllers\RoomtypeController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\CustomerController;
@@ -35,6 +36,10 @@ Route::get('admin/logout',[AdminController::class,'logout']);
 
 // Admin Dashboard
 Route::get('admin',[AdminController::class,'dashboard']);
+
+// Banner Routes
+Route::get('admin/banner/{id}/delete',[BannerController::class,'destroy']);
+Route::resource('admin/banner',BannerController::class);
 
 // RoomType Routes
 Route::get('admin/roomtype/{id}/delete',[RoomtypeController::class,'destroy']);
