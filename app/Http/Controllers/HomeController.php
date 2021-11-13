@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\RoomType;
+use App\Models\Banner;
 use App\Models\Roomtypeimage;
 use App\Models\Service;
 use App\Models\Testimonial;
@@ -13,10 +14,11 @@ class HomeController extends Controller
 
     // Home Page
     function home(){
+        $banners=Banner::where('publish_status','on')->get();
         $services=Service::all();
         $roomTypes=RoomType::all();
         $testimonials=Testimonial::all();
-        return View('home',['roomTypes'=>$roomTypes,'services'=>$services,'testimonials'=>$testimonials]);
+        return View('home',['roomTypes'=>$roomTypes,'services'=>$services,'testimonials'=>$testimonials,'banners'=>$banners]);
     }
 
     // Service Detail Page
