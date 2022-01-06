@@ -1,4 +1,4 @@
-<h3>Please support me via small amount</h3>
+<h3>Please support me via any small amount</h3>
 <ul>
       <li><a href="https://razorpay.com/payment-link/plink_HTAemkiRCBxDsx">RazorPay</a></li>
       <li><a href="https://www.paypal.me/codeartisanlab/">PayPal</a></li>
